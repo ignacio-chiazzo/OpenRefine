@@ -49,7 +49,11 @@ public class Configurations {
 
     public static boolean getBoolean(final String name, final boolean def) {
         final String val = get(name);
-        return (val == null) ? def : Boolean.parseBoolean(val);
+         try {
+            return (val == null) ? def : Boolean.parseBoolean(val);
+         } catch (Exception e) {
+            System.out.println(e);
+         }
     }
 
     public static int getInteger(final String name, final int def) {
@@ -58,6 +62,7 @@ public class Configurations {
             return (val == null) ? def : Integer.parseInt(val);
         } catch (NumberFormatException e) {
             throw new RuntimeException("Could not parse '" + val + "' as an integer number.", e);
+            System.out.println(val);
         }
     }
 
